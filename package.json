@@ -1,8 +1,8 @@
 {
-  "name": "vue-infinite-scroll",
-  "version": "2.0.2",
-  "description": "An infinite scroll directive for vue.js.",
-  "main": "vue-infinite-scroll.js",
+  "name": "vue-infinite-scroll-elementui-select",
+  "version": "1.0.0",
+  "description": "An infinite scroll directive for element-ui select.",
+  "main": "./vue-infinite-scroll.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
     "test": "npm run build && xo src/**/* && karma start",
@@ -17,7 +17,7 @@
     "infinite-scroll",
     "vue"
   ],
-  "author": "long.zhang@ele.me",
+  "author": "dequan_liang@163.com",
   "license": "MIT",
   "devDependencies": {
     "babel-preset-es2015-rollup": "^3.0.0",

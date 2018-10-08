@@ -103,7 +103,19 @@ var doBind = function () {
   }
   directive.throttleDelay = throttleDelay;
 
-  directive.scrollEventTarget = getScrollEventTarget(element);
+  var targetElement = element;
+  var isSelect = element.getAttribute('infinite-scroll-is-select');
+  if(!isSelect || isSelect === 'false') {
+    targetElement = element.querySelector('.el-select-dropdown__wrap');
+  } else{
+    targetClass = element.getAttribute('infinite-scroll-target-class');
+    if(targetClass) {
+      targetElement = element.querySelector('.' + targetClass);
+    }
+  }
+
+  directive.scrollTarget = targetElement;
+  directive.scrollEventTarget = getScrollEventTarget(targetElement);
   directive.scrollListener = throttle(doCheck.bind(directive), directive.throttleDelay);
   directive.scrollEventTarget.addEventListener('scroll', directive.scrollListener);
 
@@ -124,6 +136,7 @@ var doBind = function () {
     disabled = Boolean(directive.vm[disabledExpr]);
   }
   directive.disabled = disabled;
+
 
   var distanceExpr = element.getAttribute('infinite-scroll-distance');
   var distance = 0;
@@ -156,6 +169,7 @@ var doBind = function () {
 
 var doCheck = function (force) {
   var scrollEventTarget = this.scrollEventTarget;
+  var scrollTarget = this.scrollTarget;
   var element = this.el;
   var distance = this.distance;
 
@@ -165,7 +179,7 @@ var doCheck = function (force) {
 
   var shouldTrigger = false;
 
-  if (scrollEventTarget === element) {
+  if (scrollEventTarget === element || scrollEventTarget === scrollTarget) {
     shouldTrigger = scrollEventTarget.scrollHeight - viewportBottom <= distance;
   } else {
     var elementBottom = getElementTop(element) - getElementTop(scrollEventTarget) + element.offsetHeight + viewportScrollTop;

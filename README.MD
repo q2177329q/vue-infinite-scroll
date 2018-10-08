@@ -89,6 +89,8 @@ new Vue({
 | Option | Description |
 | ----- | ----- |
 | infinite-scroll-disabled | infinite scroll will be disabled if the value of this attribute is true. |
+| infinite-scroll-is-select | Boolean(default=true) - true when use on elementui select tag. |
+| infinite-scroll-target-class | String(default = 0) - child's of the direct element. |
 | infinite-scroll-distance | Number(default = 0) - the minimum distance between the bottom of the element and the bottom of the viewport before the v-infinite-scroll method is executed. |
 | infinite-scroll-immediate-check | Boolean(default = true) - indicates that the directive should check immediately after bind. Useful if it's possible that the content is not tall enough to fill up the scrollable container. |
 | infinite-scroll-listen-for-event | infinite scroll will check again when the event is emitted in Vue instance. |
